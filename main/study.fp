@@ -17,22 +17,22 @@ void main()
   float y = var_texcoord0.y;
 
   // Bezier
-  vec2 p = vec2(0.0, 0.0);
-  vec2 q = vec2(1.0, 0.3);
-  vec2 r = vec2(0.7, 0.9);
-  vec2 s = vec2(0.3, 0.7);
+  vec2 P0 = vec2(0.0, 0.0);
+  vec2 P1 = vec2(1.0, 0.3);
+  vec2 P2 = vec2(0.7, 0.9);
+  vec2 P3 = vec2(0.3, 0.7);
 
-  float l2 = - (  - p.y + 3 * q.y - 3 * r.y + s.y);
-  float l1 = - (2 * p.y - 4 * q.y + 2 * r.y);
-  float l0 = - (  - p.y +     q.y);
+  float l2 = - (  - P0.y + 3 * P1.y - 3 * P2.y + P3.y);
+  float l1 = - (2 * P0.y - 4 * P1.y + 2 * P2.y);
+  float l0 = - (  - P0.y +     P1.y);
 
-  float m2 =   - p.x + 3 * q.x - 3 * r.x + s.x;
-  float m1 = 2 * p.x - 4 * q.x + 2 * r.x;
-  float m0 =   - p.x + q.x;
+  float m2 =   - P0.x + 3 * P1.x - 3 * P2.x + P3.x;
+  float m1 = 2 * P0.x - 4 * P1.x + 2 * P2.x;
+  float m0 =   - P0.x + P1.x;
 
-  float u02 = - p.x - 2 * q.x + r.x;
-  float u01 = - 2 * p.x + 2 * q.x;
-  float u00 = p.x;
+  float u02 = - P0.x - 2 * P1.x + P2.x;
+  float u01 = - 2 * P0.x + 2 * P1.x;
+  float u00 = P0.x;
 
   float lu04 = l2 * u02;
   float lu03 = l1 * u02 + l2 * u01;
@@ -40,9 +40,9 @@ void main()
   float lu01 = l0 * u01 + l1 * u00;
   float lu00 = l0 * u00;
 
-  float u12 = - p.y - 2 * q.y + r.y;
-  float u11 = - 2 * p.y + 2 * q.y;
-  float u10 = p.y;
+  float u12 = - P0.y - 2 * P1.y + P2.y;
+  float u11 = - 2 * P0.y + 2 * P1.y;
+  float u10 = P0.y;
 
   float mu14 = m2 * u12;
   float mu13 = m1 * u12 + m2 * u11;
@@ -89,10 +89,10 @@ void main()
   float green = (P >= 0 ? 0.3 : 0.0) + (D >= 0 ? 0.7 : 0.0);
   float blue =  (Q <= 0 ? 0.3 : 0.0) + (D >= 0 ? 0.7 : 0.0);
 
-  vec2 dp = var_texcoord0 - p;
-  vec2 dq = var_texcoord0 - q;
-  vec2 dr = var_texcoord0 - r;
-  vec2 ds = var_texcoord0 - s;
+  vec2 dp = var_texcoord0 - P0;
+  vec2 dq = var_texcoord0 - P1;
+  vec2 dr = var_texcoord0 - P2;
+  vec2 ds = var_texcoord0 - P3;
 
   float mark = (dot(dp, dp) < 0.0004
                 || dot(dq, dq) < 0.0004
