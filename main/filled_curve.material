@@ -1,7 +1,7 @@
 name: "study"
 tags: "tile"
-vertex_program: "/main/study.vp"
-fragment_program: "/main/study.fp"
+vertex_program: "/main/filled_curve.vp"
+fragment_program: "/main/filled_curve.fp"
 vertex_constants {
   name: "tint"
   type: CONSTANT_TYPE_USER
