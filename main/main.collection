@@ -11,4 +11,8 @@ instances {
     y: 320.0
   }
 }
+instances {
+  id: "bloch_sphere"
+  prototype: "/main/bloch_sphere.go"
+}
 scale_along_z: 0
