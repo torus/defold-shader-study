@@ -6,6 +6,11 @@ varying mediump vec2 var_texcoord0;
 uniform lowp sampler2D texture_sampler;
 uniform lowp vec4 tint;
 
+uniform lowp vec4 p0_pos;
+uniform lowp vec4 p1_pos;
+uniform lowp vec4 p2_pos;
+uniform lowp vec4 p3_pos;
+
 void main()
 {
   // Pre-multiply alpha since all runtime textures already are
@@ -17,10 +22,10 @@ void main()
   float y = var_texcoord0.y;
 
   // Bezier
-  vec2 P0 = vec2(0.0, 0.0);
-  vec2 P1 = vec2(1.0, 0.3);
-  vec2 P2 = vec2(0.7, 0.9);
-  vec2 P3 = vec2(0.3, 0.7);
+  vec2 P0 = vec2(p0_pos.x, p0_pos.y);
+  vec2 P1 = vec2(p1_pos.x, p1_pos.y);
+  vec2 P2 = vec2(p2_pos.x, p2_pos.y);
+  vec2 P3 = vec2(p3_pos.x, p3_pos.y);
 
   // float t;
 

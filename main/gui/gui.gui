@@ -1,0 +1,94 @@
+script: "/main/gui/gui.gui_script"
+fonts {
+  name: "default"
+  font: "/builtins/fonts/default.font"
+}
+nodes {
+  position {
+    x: 880.0
+    y: 375.0
+  }
+  size {
+    x: 150.0
+    y: 500.0
+  }
+  type: TYPE_BOX
+  id: "gui_root"
+  inherit_alpha: true
+  size_mode: SIZE_MODE_AUTO
+}
+nodes {
+  position {
+    y: 220.0
+  }
+  size {
+    x: 150.0
+    y: 50.0
+  }
+  type: TYPE_BOX
+  id: "prefab_slider"
+  parent: "gui_root"
+  inherit_alpha: true
+  alpha: 0.0
+  size_mode: SIZE_MODE_AUTO
+}
+nodes {
+  position {
+    x: -64.0
+    y: -6.0
+  }
+  size {
+    x: 15.0
+    y: 15.0
+  }
+  color {
+    x: 0.0
+    y: 0.0
+    z: 0.0
+  }
+  type: TYPE_BOX
+  id: "slider_pin"
+  parent: "prefab_slider"
+}
+nodes {
+  position {
+    y: 14.0
+  }
+  size {
+    x: 130.0
+    y: 30.0
+  }
+  color {
+    x: 0.0
+    y: 0.0
+    z: 0.0
+  }
+  type: TYPE_TEXT
+  text: "0"
+  font: "default"
+  id: "slider_value"
+  parent: "prefab_slider"
+}
+nodes {
+  position {
+    x: -72.0
+    y: 14.0
+  }
+  size {
+    x: 130.0
+    y: 30.0
+  }
+  color {
+    x: 0.0
+    y: 0.0
+    z: 0.0
+  }
+  type: TYPE_TEXT
+  text: "-"
+  font: "default"
+  id: "slider_value_name"
+  pivot: PIVOT_W
+  parent: "prefab_slider"
+}
+material: "/builtins/materials/gui.material"
+adjust_reference: ADJUST_REFERENCE_PARENT

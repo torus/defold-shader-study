@@ -1,0 +1,81 @@
+local druid = require("druid.druid")
+
+local function gen_slider(self, pos_offset, slinder_name, on_slider_change, init_val)
+	local slider_prefab = gui.get_node("prefab_slider")
+	local nodes = gui.clone_tree(slider_prefab)
+
+	local slider_root_node = nodes["prefab_slider"]
+	local slider_pin_node = nodes["slider_pin"]
+	local slider_value_node = nodes["slider_value"]
+	local slider_value_name_node = nodes["slider_value_name"]
+	gui.set_parent(slider_root_node, gui.get_node("gui_root"))
+
+	local slider_size = gui.get_size(slider_root_node).x / 2 - gui.get_size(slider_pin_node).x
+
+	local wrap_on_slider_change = function(_, value)
+		gui.set_text(slider_value_node, string.format("%0.2f", value))
+		on_slider_change(value)
+	end
+
+	gui.set_position(slider_root_node, gui.get_position(slider_prefab) + pos_offset)
+
+	gui.set_text(slider_value_name_node, slinder_name)
+
+	local slider = self.druid:new_slider(slider_pin_node, vmath.vector3(slider_size, gui.get_position(slider_pin_node).y, 0), wrap_on_slider_change)
+	slider:set(init_val)
+end
+
+function init(self)
+	msg.post(".", "acquire_input_focus")
+
+	self.druid = druid.new(self)
+	self.sliders = {}
+
+	local init_positions = {
+		{ x = 0.0, y = 0.0 },
+		{ x = 1.0, y = 0.3 },
+		{ x = 0.7, y = 0.9 },
+		{ x = 0.3, y = 0.7 }
+	}
+
+	self.values = {}
+	local slider_size = gui.get_size(gui.get_node("prefab_slider"))
+	for i = 0 , 3 do
+		self.values[i] = { x = 0, y = 0 }
+		local base_pos_y = - (slider_size.y * 2 + 30) * i
+		local set_x = function(value)
+			self.values[i].x = value
+			msg.post("/filled_curve", "change_value", { p_id = i, value = self.values[i]} )
+		end
+		local set_y = function(value)
+			self.values[i].y = value
+			msg.post("/filled_curve", "change_value", { p_id = i, value = self.values[i]} )
+		end
+
+		local defalut_value = init_positions[i + 1]
+
+		gen_slider(self, vmath.vector3(0, base_pos_y, 0), i .. " x", set_x, defalut_value.x)
+		gen_slider(self, vmath.vector3(0, base_pos_y - slider_size.y, 0), i .. " y", set_y, defalut_value.y)
+	end
+
+	gui.set_enabled(gui.get_node("prefab_slider"), false)
+end
+
+function final(self)
+	self.druid:final()
+end
+
+function update(self, dt)
+	self.druid:update(dt)
+end
+
+function on_message(self, message_id, message, sender)
+	self.druid:on_message(message_id, message, sender)
+end
+
+function on_input(self, action_id, action)
+	return self.druid:on_input(action_id, action)
+end
+
+function on_reload(self)
+end
