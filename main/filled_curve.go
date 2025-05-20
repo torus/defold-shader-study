@@ -1,3 +1,7 @@
+components {
+  id: "filled_curve"
+  component: "/main/filled_curve.script"
+}
 embedded_components {
   id: "model"
   type: "model"

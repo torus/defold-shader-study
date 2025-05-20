@@ -17,4 +17,6 @@ scale_mode = stretch
 
 [project]
 title = ShaderStudy
+dependencies#0 = https://github.com/Insality/druid/archive/refs/tags/1.1.4.zip
+dependencies#1 = https://github.com/Insality/defold-event/archive/refs/tags/11.zip
 

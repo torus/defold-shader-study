@@ -16,3 +16,11 @@ instances {
   prototype: "/main/bloch_sphere.go"
 }
 scale_along_z: 0
+embedded_instances {
+  id: "guis"
+  data: "components {\n"
+  "  id: \"gui\"\n"
+  "  component: \"/main/gui/gui.gui\"\n"
+  "}\n"
+  ""
+}
