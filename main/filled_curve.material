@@ -18,23 +18,30 @@ fragment_constants {
   name: "p0_pos"
   type: CONSTANT_TYPE_USER
   value {
+    x: 0.1
+    y: 0.1
   }
 }
 fragment_constants {
   name: "p1_pos"
   type: CONSTANT_TYPE_USER
   value {
+    x: 1.0
+    y: 0.1
   }
 }
 fragment_constants {
   name: "p2_pos"
   type: CONSTANT_TYPE_USER
   value {
+    x: 0.9
+    y: 0.8
   }
 }
 fragment_constants {
   name: "p3_pos"
   type: CONSTANT_TYPE_USER
   value {
+    y: 0.9
   }
 }

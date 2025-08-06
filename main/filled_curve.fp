@@ -11,16 +11,7 @@ uniform lowp vec4 p1_pos;
 uniform lowp vec4 p2_pos;
 uniform lowp vec4 p3_pos;
 
-void main()
-{
-  // Pre-multiply alpha since all runtime textures already are
-  lowp vec4 tint_pm = vec4(tint.xyz * tint.w, tint.w);
-  //	gl_FragColor = texture2D(texture_sampler, var_texcoord0.xy) * tint_pm;
-  // gl_FragColor = tint_pm + vec4(var_texcoord0.xy, 0, 0);
-
-  float x = var_texcoord0.x;
-  float y = var_texcoord0.y;
-
+bool is_inside(float x, float y) {
   // Bezier
   vec2 P0 = vec2(0.0, 0.0);
   vec2 P1 = vec2(1.0, 0.0);
@@ -107,6 +98,20 @@ void main()
 
   bool flag = !(R >= 0) && !(D >= 0 && (P >= 0 || Q <= 0));
   // bool flag = (R >= 0) && (P > 0) && (D >= 0) && !(Q <= 0);
+
+  return flag;
+}
+
+void main() {
+  // Pre-multiply alpha since all runtime textures already are
+  lowp vec4 tint_pm = vec4(tint.xyz * tint.w, tint.w);
+  //	gl_FragColor = texture2D(texture_sampler, var_texcoord0.xy) * tint_pm;
+  // gl_FragColor = tint_pm + vec4(var_texcoord0.xy, 0, 0);
+
+  float x = var_texcoord0.x;
+  float y = var_texcoord0.y;
+
+  bool flag = is_inside(x, y);
 
   float red = flag ? 1.0 : 0.0;
   float green = flag ? x : 1.0;
