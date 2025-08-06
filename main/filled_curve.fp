@@ -22,10 +22,10 @@ void main()
   float y = var_texcoord0.y;
 
   // Bezier
-  vec2 P0 = vec2(p0_pos.x, p0_pos.y);
-  vec2 P1 = vec2(p1_pos.x, p1_pos.y);
-  vec2 P2 = vec2(p2_pos.x, p2_pos.y);
-  vec2 P3 = vec2(p3_pos.x, p3_pos.y);
+  vec2 P0 = vec2(0.0, 0.0);
+  vec2 P1 = vec2(1.0, 0.0);
+  vec2 P2 = vec2(1.0, 1.0);
+  vec2 P3 = vec2(0.0, 1.0);
 
   // float t;
 
@@ -105,21 +105,21 @@ void main()
              - 18 * bbb * c * d * e -16 * cccc * e + 4 * bb * ccc * e + 27 * dddd - 18 * b * c * ddd
              + 4 * bbb * ddd + 4 * ccc * dd - bb * cc * dd);
 
-  // bool flag = !(R >= 0) && !(D >= 0 && (P >= 0 || Q <= 0));
+  bool flag = !(R >= 0) && !(D >= 0 && (P >= 0 || Q <= 0));
   // bool flag = (R >= 0) && (P > 0) && (D >= 0) && !(Q <= 0);
 
-  // float red = flag ? 1.0 : 0.0;
-  // float green = flag ? x : 1.0;
-  // float blue = flag ? 0.0 : y;
+  float red = flag ? 1.0 : 0.0;
+  float green = flag ? x : 1.0;
+  float blue = flag ? 0.0 : y;
 
-  float red =   (R >= 0 ? 0.2 : 0.0) + (P >= 0 ? 0.3 : 0.0) + (Q <= 0 ? 0.5 : 0.0);
-  float green = (P >= 0 ? 0.3 : 0.0) + (D >= 0 ? 0.7 : 0.0);
-  float blue =  (Q <= 0 ? 0.3 : 0.0) + (D >= 0 ? 0.7 : 0.0);
+  // float red =   (R >= 0 ? 0.2 : 0.0) + (P >= 0 ? 0.3 : 0.0) + (Q <= 0 ? 0.5 : 0.0);
+  // float green = (P >= 0 ? 0.3 : 0.0) + (D >= 0 ? 0.7 : 0.0);
+  // float blue =  (Q <= 0 ? 0.3 : 0.0) + (D >= 0 ? 0.7 : 0.0);
 
-  vec2 dp = var_texcoord0 - P0;
-  vec2 dq = var_texcoord0 - P1;
-  vec2 dr = var_texcoord0 - P2;
-  vec2 ds = var_texcoord0 - P3;
+  vec2 dp = var_texcoord0 - vec2(p0_pos.xy);
+  vec2 dq = var_texcoord0 - vec2(p1_pos.xy);
+  vec2 dr = var_texcoord0 - vec2(p2_pos.xy);
+  vec2 ds = var_texcoord0 - vec2(p3_pos.xy);
 
   float mark = (dot(dp, dp) < 0.0004
                 || dot(dq, dq) < 0.0004
