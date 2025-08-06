@@ -1,26 +1,6 @@
 name: "main"
 instances {
-  id: "filled_curve"
-  prototype: "/main/filled_curve.go"
-  position {
-    x: 480.0
-    y: 320.0
-  }
-  scale3 {
-    x: 320.0
-    y: 320.0
-  }
-}
-instances {
-  id: "bloch_sphere"
-  prototype: "/main/bloch_sphere.go"
+  id: "main"
+  prototype: "/main/main.go"
 }
 scale_along_z: 0
-embedded_instances {
-  id: "guis"
-  data: "components {\n"
-  "  id: \"gui\"\n"
-  "  component: \"/main/gui/gui.gui\"\n"
-  "}\n"
-  ""
-}

@@ -1,0 +1,6 @@
+name: "bloch_sphare"
+instances {
+  id: "bloch_sphere"
+  prototype: "/main/bloch_sphere.go"
+}
+scale_along_z: 0
