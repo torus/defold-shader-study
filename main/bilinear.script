@@ -20,10 +20,10 @@ function update(self, dt)
     local y2 = math.cos(phase + math.pi) * 0.4
 
     go.set("#model", "p0_pos", vmath.vector4(0.9 - x1, 0.5 + y1, 0, 0))
-    go.set("#model", "p1_pos", vmath.vector4(0.1 + x1, 0.5 + y1, 0, 0))
+    go.set("#model", "p1_pos", vmath.vector4(0.1 + x2, 0.5 + y2, 0, 0)) -- twist
 
     go.set("#model", "p2_pos", vmath.vector4(0.9 + x1, 0.5 - y1, 0, 0))
-    go.set("#model", "p3_pos", vmath.vector4(0.1 - x1, 0.5 - y1, 0, 0))
+    go.set("#model", "p3_pos", vmath.vector4(0.1 - x2, 0.5 - y2, 0, 0)) -- twist
 end
 
 function fixed_update(self, dt)
