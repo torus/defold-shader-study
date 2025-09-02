@@ -1,3 +1,5 @@
+-- -*- mode: lua; tab-width: 4 -*-
+
 function init(self)
 end
 

@@ -14,3 +14,9 @@ embedded_components {
   data: "collection: \"/main/bloch_sphare.collection\"\n"
   ""
 }
+embedded_components {
+  id: "bilinear_collection"
+  type: "collectionproxy"
+  data: "collection: \"/main/bilinear.collection\"\n"
+  ""
+}

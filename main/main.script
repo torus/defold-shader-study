@@ -11,7 +11,8 @@ function update(self, dt)
     if not loaded then
         print("LOADING SCENE")
         -- msg.post("#bloch_sphare_collection", "load")
-        msg.post("#filled_curve_collection", "load")
+        -- msg.post("#filled_curve_collection", "load")
+        msg.post("#bilinear_collection", "load")
         loaded = true
     end
 end
@@ -24,6 +25,7 @@ function on_message(self, message_id, message, sender)
         -- New world is loaded. Init and enable it.
         msg.post(sender, "init")
         msg.post(sender, "enable")
+        print("Enabled", sender)
     end
 end
 

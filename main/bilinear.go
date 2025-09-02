@@ -1,6 +1,6 @@
 components {
-  id: "filled_curve"
-  component: "/druid/druid.script"
+  id: "bilinear"
+  component: "/main/bilinear.script"
 }
 embedded_components {
   id: "model"

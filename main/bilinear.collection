@@ -1,0 +1,14 @@
+name: "bilinear"
+instances {
+  id: "bilinear"
+  prototype: "/main/bilinear.go"
+  position {
+    x: 480.0
+    y: 320.0
+  }
+  scale3 {
+    x: 320.0
+    y: 320.0
+  }
+}
+scale_along_z: 0
