@@ -71,10 +71,10 @@ void Ps(
 
   if (uv.x >= 0 && uv.x < 1
       && uv.y >=0 && uv.y < 1) {
-    float x = floor(uv.x * 12 + 0.5);
+    float x = floor(uv.x * 12 - 0.5);
     float cx = mod(x, 2) / 2;
 
-    float y = floor(uv.y * 12 + 0.5);
+    float y = floor(uv.y * 12 - 0.5);
     float cy = mod(y, 2) / 2;
 
     color = vec4(cx + cy, cx + cy, cx + cy, 1);
@@ -101,12 +101,12 @@ void main() {
   vec2 dr = var_texcoord0 - vec2(p2_pos.xy);
   vec2 ds = var_texcoord0 - vec2(p3_pos.xy);
 
-  float mark = (dot(dp, dp) < 0.0004
-                || dot(dq, dq) < 0.0004
-                || dot(dr, dr) < 0.0004
-                || dot(ds, ds) < 0.0004) ? 1.0 : 0.0;
+  // float mark = (dot(dp, dp) < 0.0004
+  //               || dot(dq, dq) < 0.0004
+  //               || dot(dr, dr) < 0.0004
+  //               || dot(ds, ds) < 0.0004) ? 1.0 : 0.0;
 
-  color.y += mark;
+  // color.y += mark;
 
   gl_FragColor = color;
 

@@ -14,10 +14,10 @@ function update(self, dt)
     local phase = math.sin(elapsed) * math.pi / 2 + math.pi
 
     local x1 = math.sin(phase) * 0.1
-    local y1 = math.cos(phase) * 0.5
+    local y1 = math.cos(phase) * 0.4
 
     local x2 = math.sin(phase + math.pi) * 0.1
-    local y2 = math.cos(phase + math.pi) * 0.5
+    local y2 = math.cos(phase + math.pi) * 0.4
 
     go.set("#model", "p0_pos", vmath.vector4(0.9 - x1, 0.5 + y1, 0, 0))
     go.set("#model", "p1_pos", vmath.vector4(0.1 + x1, 0.5 + y1, 0, 0))
