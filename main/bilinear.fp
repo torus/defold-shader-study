@@ -77,24 +77,30 @@ void Ps(
     float y = floor(uv.y * 12 - 0.5);
     float cy = mod(y, 2) / 2;
 
-    color = vec4(cx + cy, cx + cy, cx + cy, 1);
+    color = vec4(uv.x * (cx + cy), uv.y * (cx + cy), cx + cy, 1);
   } else
-    color = vec4(0, 0, 0, 1);
+    color = vec4(0, 0, 0, 0);
 }
 
-
-
-void main() {
+void calc_color(in vec4 p0, in vec4 p1, in vec4 p2, in vec4 p3, out vec4 color) {
   vec2 pos;
   vec2 p = var_texcoord0;
-  vec2 q = p - p0_pos.xy;
-  vec2 b1 = p1_pos.xy - p0_pos.xy;
-  vec2 b2 = p2_pos.xy - p0_pos.xy;
-  vec2 b3 = p0_pos.xy - p1_pos.xy - p2_pos.xy + p3_pos.xy;
+  vec2 q = p - p0.xy;
+  vec2 b1 = p1.xy - p0.xy;
+  vec2 b2 = p2.xy - p0.xy;
+  vec2 b3 = p0.xy - p1.xy - p2.xy + p3.xy;
 
   V2P v2p = V2P(pos, q, b1, b2, b3);
-  vec4 color;
   Ps(v2p, color);
+}
+
+void main() {
+  vec4 color1;
+  calc_color(p0_pos, p1_pos, p2_pos, p3_pos, color1);
+  vec4 color2;
+  calc_color(p1_pos, p0_pos, p3_pos, p2_pos, color2);
+
+  vec4 color = color1 + color2;
 
   vec2 dp = var_texcoord0 - vec2(p0_pos.xy);
   vec2 dq = var_texcoord0 - vec2(p1_pos.xy);
